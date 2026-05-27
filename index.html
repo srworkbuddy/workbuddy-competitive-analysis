@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>WorkBuddy 竞品分析</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+:root{
+  --bg:#f5f7fa;
+  --bg2:#eef1f5;
+  --sf:#ffffff;
+  --sf2:#f9fafb;
+  --bd:#e4e7ed;
+  --bd2:#d0d5dd;
+  --tx:#1f2329;
+  --tx2:#646a73;
+  --tx3:#8f959e;
+  --blue:#0052d9;
+  --blue2:#2b6fd4;
+  --blue3:#e8f0fe;
+  --blue4:#d6e4ff;
+  --green:#2a9d5c;
+  --green2:#e6f7ed;
+  --orange:#d97706;
+  --orange2:#fef3e0;
+  --red:#d93025;
+  --red2:#fdecea;
+  --purple:#6b4fa0;
+  --purple2:#f0ecf7;
+  --cyan:#0891b2;
+  --cyan2:#e0f5fa;
+  --wb:#0052d9;--aily:#0891b2;--wk:#d93025;--qw:#d97706;--ark:#2a9d5c;
+  --shadow:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow2:0 4px 12px rgba(0,0,0,.08);
+  --shadow3:0 8px 24px rgba(0,0,0,.1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'PingFang SC','Microsoft YaHei',sans-serif;background:var(--bg);color:var(--tx);line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+
+/* === Hero === */
+.hero{position:relative;min-height:340px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:64px 32px 48px;overflow:hidden;background:linear-gradient(165deg,#0052d9 0%,#2b6fd4 30%,#4a82d8 60%,#6b9ae0 100%)}
+.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")}
+.hero::after{content:'';position:absolute;bottom:0;left:0;right:0;height:80px;background:linear-gradient(to top,var(--bg),transparent)}
+.hero-c{position:relative;z-index:1}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 18px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);border-radius:100px;font-size:12px;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.5px;margin-bottom:20px;backdrop-filter:blur(8px)}
+.hero-badge .pulse{width:6px;height:6px;background:#fff;border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(255,255,255,.4)}50%{opacity:.8;box-shadow:0 0 0 8px transparent}}
+.hero h1{font-size:40px;font-weight:800;letter-spacing:-1px;color:#fff;margin-bottom:14px;line-height:1.2;text-shadow:0 2px 8px rgba(0,0,0,.15)}
+.hero .sub{font-size:17px;color:rgba(255,255,255,.85);max-width:500px;margin:0 auto}
+.hero-meta{display:flex;gap:20px;justify-content:center;margin-top:24px;font-size:12px;color:rgba(255,255,255,.65)}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+.hero-meta .d{width:3px;height:3px;background:rgba(255,255,255,.4);border-radius:50%}
+
+/* === Container === */
+.ctn{max-width:1120px;margin:0 auto;padding:0 32px 80px}
+
+/* === Nav === */
+.nav-wrap{position:sticky;top:0;z-index:100;padding:12px 0;background:rgba(245,247,250,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--bd)}
+.nav{display:flex;gap:4px;background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:4px;overflow-x:auto;box-shadow:var(--shadow)}
+.nav button{flex:1;padding:10px 20px;background:transparent;border:none;color:var(--tx3);font-size:13px;font-weight:600;cursor:pointer;border-radius:8px;transition:all .25s;white-space:nowrap;letter-spacing:.3px}
+.nav button:hover{color:var(--tx2);background:var(--bg2)}
+.nav button.active{color:#fff;background:var(--blue);box-shadow:0 2px 8px rgba(0,82,217,.3)}
+
+/* === Section === */
+.sec{display:none;animation:su .4s ease}.sec.active{display:block}
+@keyframes su{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* === Type === */
+h2{font-size:24px;font-weight:700;margin:40px 0 20px;letter-spacing:-.3px;color:var(--tx)}
+h2 .ac{color:var(--blue)}
+h3{font-size:17px;font-weight:600;margin:32px 0 16px;color:var(--tx)}
+h4{font-size:14px;font-weight:600;margin:16px 0 8px;color:var(--blue);text-transform:uppercase;letter-spacing:.8px}
+p{margin:6px 0;color:var(--tx2)}
+.lead{font-size:15px;margin-bottom:24px;line-height:1.9}
+
+/* === Tier Banner === */
+.tier-banner{display:flex;align-items:center;gap:16px;padding:20px 24px;border-radius:12px;margin:16px 0;border:1px solid}
+.tier-banner .tier-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.tier-banner .tier-text{flex:1}
+.tier-banner .tier-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--tx3);margin-bottom:4px}
+.tier-banner .tier-products{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.tier-t1{background:linear-gradient(135deg,#f0f5ff 0%,#e8f0fe 100%);border-color:var(--blue4)}
+.tier-t1 .tier-icon{background:var(--blue);color:#fff}
+.tier-t2{background:linear-gradient(135deg,#fffbf0 0%,#fef3e0 100%);border-color:#fde0b0}
+.tier-t2 .tier-icon{background:var(--orange);color:#fff}
+
+/* === Key Points === */
+.key-points{display:flex;flex-direction:column;gap:10px;margin:20px 0}
+.kp{display:flex;gap:14px;align-items:flex-start;padding:16px 20px;border-radius:12px;border:1px solid var(--bd);background:var(--sf);box-shadow:var(--shadow);transition:all .25s}
+.kp:hover{border-color:var(--bd2);box-shadow:var(--shadow2)}
+.kp-icon{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;color:#fff}
+.kp-icon.blue{background:var(--blue)}
+.kp-icon.orange{background:var(--orange)}
+.kp-icon.green{background:var(--green)}
+.kp-text{flex:1}
+.kp-text strong{display:block;font-size:14px;color:var(--tx);margin-bottom:4px}
+.kp-text span{font-size:13px;color:var(--tx2);line-height:1.7}
+
+/* === Criteria Flow === */
+.criteria-flow{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:20px 0;border-radius:12px;overflow:hidden;border:1px solid var(--bd);background:var(--sf);box-shadow:var(--shadow)}
+.criteria-item{padding:20px;position:relative;display:flex;gap:14px;align-items:flex-start;border-right:1px solid var(--bd);border-bottom:1px solid var(--bd)}
+.criteria-item:nth-child(3n){border-right:none}
+.criteria-item:nth-child(n+4){border-bottom:none}
+.criteria-num{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:700;flex-shrink:0;color:#fff;background:var(--blue);position:relative}
+.criteria-num::after{content:'';position:absolute;right:-15px;top:50%;transform:translateY(-50%);width:0;height:0;border-left:6px solid var(--blue);border-top:5px solid transparent;border-bottom:5px solid transparent;opacity:.4}
+.criteria-item:nth-child(3n) .criteria-num::after{display:none}
+.criteria-item:nth-child(n+4) .criteria-num::after{display:none}
+.criteria-body{flex:1}
+.criteria-body strong{display:block;font-size:14px;color:var(--tx);margin-bottom:4px}
+.criteria-body span{font-size:12px;color:var(--tx3);line-height:1.6}
+
+/* === Boundary Card === */
+.boundary{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--bd);background:var(--sf);box-shadow:var(--shadow);margin:16px 0}
+.boundary-side{padding:24px}
+.boundary-side.can{background:linear-gradient(180deg,var(--green2) 0%,#f0faf4 100%);border-right:1px solid var(--bd)}
+.boundary-side.cant{background:linear-gradient(180deg,var(--orange2) 0%,#fffcf5 100%)}
+.boundary-side h4{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;margin:0 0 14px;display:flex;align-items:center;gap:8px}
+.boundary-side.can h4{color:var(--green)}
+.boundary-side.cant h4{color:var(--orange)}
+.boundary-side h4 .icon{font-size:16px}
+.boundary-side ul{list-style:none;padding:0;margin:0}
+.boundary-side li{font-size:13px;padding:6px 0 6px 20px;position:relative;color:var(--tx2);line-height:1.7}
+.boundary-side.can li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700}
+.boundary-side.cant li::before{content:'✗';position:absolute;left:0;color:var(--orange);font-weight:700}
+.boundary-conclusion{grid-column:1/-1;padding:14px 24px;background:var(--blue3);border-top:1px solid var(--blue4);font-size:13px;font-weight:600;color:var(--blue);display:flex;align-items:center;gap:8px}
+.boundary-conclusion::before{content:'📍';font-size:14px}
+.boundary-product{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tx3);margin-bottom:12px;padding:6px 14px;background:var(--sf);border:1px solid var(--bd);border-radius:8px;display:inline-flex;align-items:center;gap:6px}
+.boundary-product.qw{color:var(--qw);border-color:#fde0b0;background:#fff8ed}
+.boundary-product.ark{color:var(--ark);border-color:#b2e0c8;background:#f0faf4}
+
+/* === Compare VS === */
+.vs-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border-radius:12px;overflow:hidden;border:1px solid var(--bd);background:var(--sf);box-shadow:var(--shadow);margin:16px 0}
+.vs-side{padding:24px}
+.vs-side.left{background:linear-gradient(180deg,var(--sf2) 0%,var(--sf) 100%);border-right:1px solid var(--bd)}
+.vs-side.right{background:linear-gradient(180deg,var(--blue3) 0%,#f5f9ff 100%)}
+.vs-side .vs-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:var(--tx3);margin-bottom:4px}
+.vs-side .vs-title{font-size:15px;font-weight:700;margin-bottom:16px}
+.vs-side.left .vs-title{color:var(--orange)}
+.vs-side.right .vs-title{color:var(--blue)}
+.vs-row{display:flex;align-items:flex-start;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);font-size:13px;color:var(--tx2);line-height:1.7}
+.vs-row:last-child{border-bottom:none}
+.vs-row .vs-dim{font-weight:600;color:var(--tx);min-width:72px;flex-shrink:0;font-size:12px}
+
+/* === Cards === */
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:24px;margin:12px 0;transition:all .25s;box-shadow:var(--shadow)}
+.card:hover{border-color:var(--bd2);box-shadow:var(--shadow2)}
+.cg{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px}
+.card.hl{border-color:var(--blue4);background:linear-gradient(135deg,var(--blue3),#f0f6ff);box-shadow:0 0 0 1px var(--blue4),var(--shadow2)}
+
+/* === Tables === */
+.tw{overflow-x:auto;margin:12px 0;border-radius:12px;border:1px solid var(--bd);background:var(--sf);box-shadow:var(--shadow)}
+table{width:100%;border-collapse:collapse;font-size:13px}
+thead th{background:var(--bg2);padding:12px 14px;text-align:left;font-weight:600;color:var(--tx3);border-bottom:1px solid var(--bd);white-space:nowrap;font-size:12px;text-transform:uppercase;letter-spacing:.5px}
+thead th:first-child{border-right:1px solid var(--bd)}
+tbody td{padding:11px 14px;border-bottom:1px solid var(--bd);vertical-align:top;color:var(--tx2)}
+tbody tr:hover{background:var(--sf2)}
+tbody tr:last-child td{border-bottom:none}
+tbody td:first-child{font-weight:600;color:var(--tx3);background:var(--sf2);border-right:1px solid var(--bd);white-space:nowrap;font-size:12px}
+
+/* === Badges === */
+.badge{display:inline-block;padding:3px 10px;border-radius:6px;font-size:11px;font-weight:700;letter-spacing:.3px}
+.badge.strong{background:var(--green2);color:var(--green)}
+.badge.adequate{background:var(--blue3);color:var(--blue)}
+.badge.weak{background:var(--orange2);color:var(--orange)}
+.badge.absent{background:var(--red2);color:var(--red)}
+.dim{font-size:11px;color:var(--blue);font-weight:700;text-transform:uppercase;letter-spacing:.8px}
+
+/* === Matrix === */
+.mc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;overflow:hidden;box-shadow:var(--shadow)}
+.mr{display:flex;align-items:stretch;border-bottom:1px solid var(--bd)}.mr:last-child{border-bottom:none}
+.ml{width:140px;flex-shrink:0;padding:12px 14px;font-size:12px;font-weight:600;color:var(--tx2);display:flex;align-items:center;background:var(--sf2);border-right:1px solid var(--bd)}
+.mcs{display:flex;flex:1}
+.mcl{flex:1;padding:12px 10px;text-align:center;border-right:1px solid var(--bd);display:flex;align-items:center;justify-content:center}
+.mcl:last-child{border-right:none}
+.dot{width:12px;height:12px;border-radius:50%;position:relative}
+.dot.strong{background:var(--green)}
+.dot.adequate{background:var(--blue)}
+.dot.weak{background:var(--orange)}
+.dot.absent{background:var(--red)}
+.mleg{display:flex;gap:20px;justify-content:center;margin-top:10px;padding:10px}
+.mleg span{font-size:11px;color:var(--tx3);display:flex;align-items:center;gap:6px}
+.mleg .dot{width:8px;height:8px}
+
+/* === SWOT === */
+.sg{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}
+.si{border-radius:12px;padding:24px;border:1px solid;background:var(--sf);box-shadow:var(--shadow)}
+.si h4{margin:0 0 14px;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px}
+.si ul{list-style:none;padding:0}
+.si li{font-size:14px;padding:7px 0 7px 18px;position:relative;color:var(--tx2);line-height:1.6}
+.si li::before{content:'';position:absolute;left:0;top:15px;width:6px;height:6px;border-radius:50%}
+.ss{border-color:#b2e0c8}
+.ss h4{color:var(--green)}.ss li::before{background:var(--green)}
+.swt{border-color:#fde0b0}
+.swt h4{color:var(--orange)}.swt li::before{background:var(--orange)}
+
+/* === Quote === */
+.qb{position:relative;border-radius:12px;padding:22px 28px;margin:20px 0;background:var(--blue3);border:1px solid var(--blue4)}
+.qb::before{content:'\201C';font-size:48px;font-weight:800;color:var(--blue);position:absolute;top:0;left:18px;opacity:.12;font-family:Georgia,serif;line-height:1}
+.qb p{padding-left:20px;font-size:14px;line-height:1.9;color:var(--tx);font-weight:500}
+
+/* === Strategy === */
+.sc{background:var(--sf);border:1px solid var(--bd);border-radius:12px;padding:24px;margin:12px 0;transition:all .25s;box-shadow:var(--shadow)}
+.sc:hover{border-color:var(--bd2);box-shadow:var(--shadow2)}
+.sc .tg{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;background:var(--blue3);border:1px solid var(--blue4);border-radius:8px;font-size:11px;font-weight:700;color:var(--blue);margin-bottom:12px;text-transform:uppercase;letter-spacing:.5px}
+.sc h4{color:var(--tx);font-size:16px;font-weight:600;margin-bottom:8px}
+.sc p{color:var(--tx2);font-size:14px}
+
+/* === Footer === */
+.ft{text-align:center;padding:40px 0;color:var(--tx3);font-size:12px;border-top:1px solid var(--bd);margin-top:48px;background:var(--sf)}
+
+/* === Responsive === */
+@media(max-width:768px){
+  .ctn{padding:0 16px 60px}
+  .hero h1{font-size:26px}
+  .hero{padding:56px 16px 40px;min-height:300px}
+  .sg{grid-template-columns:1fr}
+  .cg{grid-template-columns:1fr}
+  .nav button{font-size:11px;padding:8px 10px}
+  .criteria-flow{grid-template-columns:1fr}
+  .criteria-item{border-right:none!important}
+  .criteria-item:nth-child(n+4){border-bottom:1px solid var(--bd)}
+  .criteria-item:last-child{border-bottom:none}
+  .criteria-num::after{display:none!important}
+  .boundary,.vs-grid{grid-template-columns:1fr}
+  .boundary-side.can{border-right:none;border-bottom:1px solid var(--bd)}
+  .vs-side.left{border-right:none;border-bottom:1px solid var(--bd)}
+  .key-points{gap:8px}
+  .kp{padding:12px 16px}
+}
+::-webkit-scrollbar{width:6px;height:6px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--bd2);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:var(--tx3)}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="hero-c">
+    <div class="hero-badge"><span class="pulse"></span>Competitive Analysis</div>
+    <h1>WorkBuddy 竞品分析</h1>
+    <p class="sub">企业 AI 工作台赛道 · 五方定位重构</p>
+    <div class="hero-meta">
+      <span>5 竞品</span><span class="d"></span>
+      <span>2 竞争层级</span><span class="d"></span>
+      <span>6 判定标准</span><span class="d"></span>
+      <span>2026-05-22</span>
+    </div>
+  </div>
+</div>
+
+<div class="nav-wrap"><div class="ctn"><div class="nav">
+  <button class="active" onclick="sw(0)">核心结论</button>
+  <button onclick="sw(1)">竞争格局</button>
+  <button onclick="sw(2)">功能对比</button>
+  <button onclick="sw(3)">SWOT</button>
+  <button onclick="sw(4)">战略建议</button>
+</div></div></div>
+
+<div class="ctn">
+
+<!-- ===== 0 核心结论 ===== -->
+<div class="sec active" id="s0">
+<h2>竞争分层，<span class="ac">不可同维度并列</span></h2>
+<p class="lead">五者不宜在同一层级横向对比。WorkBuddy、飞书 Aily、钉钉悟空处于"企业 AI 工作台 / 新工作入口"竞争层；QoderWork 与 ArkClaw 应归入"工具型 / 执行型 Agent"层。</p>
+
+<div class="tier-banner tier-t1">
+  <div class="tier-icon">🏢</div>
+  <div class="tier-text">
+    <div class="tier-label">第一层 · 企业 AI 工作台 / 新工作入口</div>
+    <div style="font-size:13px;color:var(--tx2);margin-top:2px">具备组织关系、企业资产与协同入口</div>
+    <div class="tier-products">
+      <span class="ct wb" style="min-width:auto">WorkBuddy</span>
+      <span class="ct aily" style="min-width:auto">飞书 Aily</span>
+      <span class="ct wk" style="min-width:auto">钉钉悟空</span>
+    </div>
+  </div>
+</div>
+<div class="tier-banner tier-t2">
+  <div class="tier-icon">🔧</div>
+  <div class="tier-text">
+    <div class="tier-label">第二层 · Claw / 执行型 Agent 工具</div>
+    <div style="font-size:13px;color:var(--tx2);margin-top:2px">聚焦执行能力，缺乏组织级入口与企业资产沉淀</div>
+    <div class="tier-products">
+      <span class="ct qw" style="min-width:auto">QoderWork</span>
+      <span class="ct ark" style="min-width:auto">ArkClaw</span>
+    </div>
+  </div>
+</div>
+
+<h3>关键定位判断</h3>
+<div class="key-points">
+  <div class="kp"><div class="kp-icon blue">W</div><div class="kp-text"><strong>WorkBuddy → 独立新入口</strong><span>企业 AI 工作台与治理中枢，不绑定旧协同入口，腾讯生态可承接</span></div></div>
+  <div class="kp"><div class="kp-icon orange">A</div><div class="kp-text"><strong>飞书 Aily / 钉钉悟空 → 旧入口 Agent 化</strong><span>具备协同存量与组织沉淀，但受飞书/钉钉生态绑定，非独立新入口</span></div></div>
+  <div class="kp"><div class="kp-icon green">Q</div><div class="kp-text"><strong>QoderWork / ArkClaw → 执行工具层</strong><span>本地桌面或云端托管执行工具，缺乏企业组织级入口与资产沉淀</span></div></div>
+</div>
+
+<h3>WorkBuddy 优势定位</h3>
+<div class="card hl">
+  <p style="font-size:15px;color:var(--tx);font-weight:500;line-height:1.8">WorkBuddy 的核心差异化：将 Claw 式真实执行能力融入企业 AI 工作台架构——既可操作真实工作环境，又通过 Teams、Build、Admin、Connector 及腾讯文档/网盘/乐享构建组织级闭环。</p>
+  <p style="font-size:13px;color:var(--tx3);margin-top:12px;line-height:1.7">定位不应被表述为"腾讯也做了一只龙虾"——这将把 WorkBuddy 拉低至工具层竞争。</p>
+</div>
+</div>
+
+<!-- ===== 1 竞争格局 ===== -->
+<div class="sec" id="s1">
+<h2>竞争格局</h2>
+
+<!-- 判定标准 -->
+<h3>企业 AI 工作台判定标准</h3>
+<p class="lead">一个产品须被认定为"企业 AI 工作台"，至少需满足以下六项条件：</p>
+<div class="criteria-flow">
+  <div class="criteria-item"><div class="criteria-num">1</div><div class="criteria-body"><strong>企业统一入口</strong><span>全角色在同一入口调度 Agent</span></div></div>
+  <div class="criteria-item"><div class="criteria-num">2</div><div class="criteria-body"><strong>组织关系承接</strong><span>理解组织、角色、权限与协同关系</span></div></div>
+  <div class="criteria-item"><div class="criteria-num">3</div><div class="criteria-body"><strong>企业资产沉淀</strong><span>知识、流程、Skill 沉淀为资产</span></div></div>
+  <div class="criteria-item"><div class="criteria-num">4</div><div class="criteria-body"><strong>跨系统连接</strong><span>文档、CRM、ERP、IM、浏览器互通</span></div></div>
+  <div class="criteria-item"><div class="criteria-num">5</div><div class="criteria-body"><strong>多 Agent 协同</strong><span>多数字员工协同，非单一助手</span></div></div>
+  <div class="criteria-item"><div class="criteria-num">6</div><div class="criteria-body"><strong>治理与运营</strong><span>权限、审计、用量、安全策略</span></div></div>
+</div>
+
+<!-- 工具层能力边界（合并） -->
+<h3>工具层能力边界</h3>
+<div class="boundary">
+  <div class="boundary-side can">
+    <div class="boundary-product qw">QoderWork</div>
+    <h4><span class="icon">✓</span> 能做的</h4>
+    <ul>
+      <li>本地桌面、浏览器与电脑操作</li>
+      <li>文档生成、数据分析</li>
+      <li>Qoder 工程能力、Skills / MCP</li>
+    </ul>
+    <div class="boundary-product ark" style="margin-top:14px">ArkClaw</div>
+    <h4><span class="icon">✓</span> 能做的</h4>
+    <ul>
+      <li>OpenClaw 云端托管、7×24 在线</li>
+      <li>火山模型、Skill Hub / ClawHub</li>
+      <li>IM 接入、飞书适配、低门槛</li>
+    </ul>
+  </div>
+  <div class="boundary-side cant">
+    <div class="boundary-product qw">关键缺失</div>
+    <h4><span class="icon">✗</span> 未回应的关键问题</h4>
+    <ul>
+      <li>企业如何统一管理全部数字员工？</li>
+      <li>多 Agent 如何跨部门协同？</li>
+      <li>企业知识、流程如何体系化沉淀？</li>
+      <li>Admin 如何审计工具调用与成本？</li>
+    </ul>
+    <div class="boundary-product ark" style="margin-top:14px">关键缺失</div>
+    <h4><span class="icon">✗</span> 未回应的关键问题</h4>
+    <ul>
+      <li>是否具备独立组织关系与权限体系？</li>
+      <li>能否成为企业统一 AI 工作台？</li>
+      <li>是否具备完整 Admin 与审计方案？</li>
+    </ul>
+  </div>
+  <div class="boundary-conclusion">定位结论：本地桌面执行型 Agent / 云端托管工具，而非企业 AI 工作台</div>
+</div>
+
+<!-- WorkBuddy 差异化优势（合并） -->
+<h3>WorkBuddy 差异化优势</h3>
+<div class="vs-grid">
+  <div class="vs-side left">
+    <div class="vs-label">竞品侧</div>
+    <div class="vs-title">飞书 Aily / 钉钉悟空 / QoderWork / ArkClaw</div>
+    <div class="vs-row"><span class="vs-dim">入口层</span>飞书/钉钉强绑定旧入口，工具层无组织入口</div>
+    <div class="vs-row"><span class="vs-dim">组织</span>旧入口有组织沉淀，工具层组织关系弱</div>
+    <div class="vs-row"><span class="vs-dim">资产</span>旧入口文档/权限完整，工具层仅 Skill/任务记录</div>
+    <div class="vs-row"><span class="vs-dim">治理</span>旧入口受旧入口约束，工具层治理能力弱</div>
+    <div class="vs-row"><span class="vs-dim">认知</span>旧入口="协同软件里的 AI"，工具层="AI 执行助手"</div>
+  </div>
+  <div class="vs-side right">
+    <div class="vs-label">WorkBuddy</div>
+    <div class="vs-title">企业 AI 工作台、治理中枢</div>
+    <div class="vs-row"><span class="vs-dim">入口</span>不绑定旧入口，直接建立企业 AI 工作台</div>
+    <div class="vs-row"><span class="vs-dim">组织</span>Teams + Admin + Connector 形成组织级协同</div>
+    <div class="vs-row"><span class="vs-dim">资产</span>知识、Skill、专家经验沉淀为企业 AI 资产</div>
+    <div class="vs-row"><span class="vs-dim">治理</span>权限、审计、用量、运行观测可产品化</div>
+    <div class="vs-row"><span class="vs-dim">认知</span>"企业下一代工作入口"</div>
+  </div>
+</div>
+
+<!-- 竞品定位对比矩阵 -->
+<h3>竞品定位对比矩阵</h3>
+<p class="lead">基于六项判定标准，各产品满足程度对比：</p>
+<div class="mc">
+  <div class="mr" style="background:var(--bg2)">
+    <div class="ml" style="font-size:11px;color:var(--tx3);text-transform:uppercase;letter-spacing:1px">判定标准</div>
+    <div class="mcs">
+      <div class="mcl" style="font-weight:700;color:var(--wb)">WorkBuddy</div>
+      <div class="mcl" style="font-weight:700;color:var(--qw)">QoderWork</div>
+      <div class="mcl" style="font-weight:700;color:var(--wk)">钉钉悟空</div>
+      <div class="mcl" style="font-weight:700;color:var(--aily)">飞书 Aily</div>
+      <div class="mcl" style="font-weight:700;color:var(--ark)">ArkClaw</div>
+    </div>
+  </div>
+  <div class="mr"><div class="ml">企业统一入口</div><div class="mcs"><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot absent"></div></div><div class="mcl"><div class="dot adequate"></div></div><div class="mcl"><div class="dot adequate"></div></div><div class="mcl"><div class="dot absent"></div></div></div></div>
+  <div class="mr"><div class="ml">组织关系承接</div><div class="mcs"><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot weak"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot weak"></div></div></div></div>
+  <div class="mr"><div class="ml">企业资产沉淀</div><div class="mcs"><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot weak"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot weak"></div></div></div></div>
+  <div class="mr"><div class="ml">跨系统连接</div><div class="mcs"><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot adequate"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot adequate"></div></div></div></div>
+  <div class="mr"><div class="ml">多 Agent 协同</div><div class="mcs"><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot absent"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot adequate"></div></div><div class="mcl"><div class="dot weak"></div></div></div></div>
+  <div class="mr"><div class="ml">治理与运营</div><div class="mcs"><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot weak"></div></div><div class="mcl"><div class="dot strong"></div></div><div class="mcl"><div class="dot adequate"></div></div><div class="mcl"><div class="dot weak"></div></div></div></div>
+</div>
+<div class="mleg">
+  <span><div class="dot strong"></div>强</span>
+  <span><div class="dot adequate"></div>中等</span>
+  <span><div class="dot weak"></div>较弱</span>
+  <span><div class="dot absent"></div>缺失</span>
+</div>
+</div>
+
+<!-- ===== 2 功能对比 ===== -->
+<div class="sec" id="s2">
+<h2>功能对比</h2>
+<p class="lead">参照 AI-Agent 竞品分析维度，并补充"是否企业 AI 工作台定位"这一关键判定项。</p>
+
+<h3>定位与形态</h3>
+<div class="tw"><table>
+<thead><tr><th>维度</th><th>WorkBuddy</th><th>QoderWork</th><th>钉钉悟空</th><th>飞书 Aily</th><th>ArkClaw</th></tr></thead>
+<tbody>
+<tr><td><span class="dim">定位</span></td><td>企业 AI 工作台与治理中枢</td><td>桌面智能体，Qoder 向办公延展</td><td>为 AI 重写的钉钉</td><td>飞书智能伙伴 + Agent 平台</td><td>OpenClaw 云端托管助手</td></tr>
+<tr><td><span class="dim">是否工作台</span></td><td><span class="badge strong">是，独立新入口</span></td><td><span class="badge absent">否，工具型</span></td><td><span class="badge adequate">半是/接近</span></td><td><span class="badge adequate">半是</span></td><td><span class="badge absent">否，云端托管</span></td></tr>
+<tr><td><span class="dim">运行载体</span></td><td>Web + 桌面 + CLI + API</td><td>桌面 App + 本地沙箱</td><td>钉钉云端 + 客户端 + 云电脑</td><td>飞书内嵌 + 专业版 Web</td><td>纯云端 SaaS</td></tr>
+<tr><td><span class="dim">旧协同关系</span></td><td>不绑定，直接建 AI 工作台</td><td>独立桌面工具</td><td>颠覆钉钉，AI 用钉钉</td><td>飞书入口增强</td><td>依附飞书/IM，非入口</td></tr>
+</tbody></table></div>
+
+<h3>能力与战略</h3>
+<div class="tw"><table>
+<thead><tr><th>维度</th><th>WorkBuddy</th><th>QoderWork</th><th>钉钉悟空</th><th>飞书 Aily</th><th>ArkClaw</th></tr></thead>
+<tbody>
+<tr><td><span class="dim">真实执行</span></td><td>自研龙虾为核心护城河，与 Teams/Connector 一体化</td><td>桌面执行强，偏本地办公</td><td>行动式 AI，操作钉钉/浏览器/云系统</td><td>云端智能体电脑 + MCP/工作流</td><td>OpenClaw 云端执行，浏览器/文档自动化</td></tr>
+<tr><td><span class="dim">扩展机制</span></td><td>Skill + MCP + Connector + Plugin</td><td>Skill 市场 + MCP + Plugins</td><td>AI 能力市场 + OPT 行业方案</td><td>智能体平台 + MCP + 妙搭</td><td>ClawHub + Coze 协同</td></tr>
+<tr><td><span class="dim">团队协作</span></td><td>Teams 多 Agent 协同（组织级差异点）</td><td>Skill 团队复用</td><td>多人共享 + 多 Agent + 沙箱</td><td>智能伙伴常驻联系人</td><td>依赖 IM 集成</td></tr>
+<tr><td><span class="dim">核心优势 S</span></td><td>独立工作台 + 真实执行 + 治理 + 腾讯生态</td><td>桌面执行 + Qoder 工程能力</td><td>2000 万企业护城河 + OPT</td><td>飞书上下文 + 妙搭/多维表格</td><td>低门槛 + 云端 7×24 + ClawHub</td></tr>
+<tr><td><span class="dim">主要风险 W/T</span></td><td>需持续包装为客户可感知的端到端方案</td><td>组织级治理不足，产品线关系需理顺</td><td>强绑钉钉，自我颠覆成本高</td><td>强绑飞书，本地控制弱</td><td>工具属性强，缺少工作台定位</td></tr>
+</tbody></table></div>
+</div>
+
+<!-- ===== 3 SWOT ===== -->
+<div class="sec" id="s3">
+<h2>WorkBuddy <span class="ac">SWOT</span></h2>
+<p class="lead">基于原文 SWOT 维度，原文仅给出 S（核心优势）与 W/T（主要风险），未单独拆分 O 和 T。</p>
+
+<div class="sg">
+  <div class="si ss">
+    <h4>S · 核心优势</h4>
+    <ul><li>独立企业 AI 工作台定位</li><li>真实执行 + 组织协同 + 治理 + 腾讯生态组合</li></ul>
+  </div>
+  <div class="si swt">
+    <h4>W/T · 主要风险</h4>
+    <ul><li>需要持续把能力包装成客户可感知的企业级端到端方案</li></ul>
+  </div>
+</div>
+
+<h3>竞品 SWOT 速览</h3>
+<p class="lead">原文对四家竞品的 SWOT 均为一句话概括，未展开拆分。</p>
+<div class="cg">
+  <div class="card">
+    <h4 style="color:var(--aily)">飞书 Aily</h4>
+    <p><strong style="color:var(--green)">S:</strong> 飞书上下文 + 智能伙伴 + 妙搭/多维表格</p>
+    <p><strong style="color:var(--orange)">W/T:</strong> 强绑飞书，本地控制弱</p>
+  </div>
+  <div class="card">
+    <h4 style="color:var(--wk)">钉钉悟空</h4>
+    <p><strong style="color:var(--green)">S:</strong> 2000 万企业护城河，OPT 开箱即用</p>
+    <p><strong style="color:var(--orange)">W/T:</strong> 强绑钉钉，自我颠覆成本高</p>
+  </div>
+  <div class="card">
+    <h4 style="color:var(--qw)">QoderWork</h4>
+    <p><strong style="color:var(--green)">S:</strong> 桌面执行 + Qoder 工程能力</p>
+    <p><strong style="color:var(--orange)">W/T:</strong> 组织级治理与统一入口不足</p>
+  </div>
+  <div class="card">
+    <h4 style="color:var(--ark)">ArkClaw</h4>
+    <p><strong style="color:var(--green)">S:</strong> 低门槛 + 云端 7×24 + ClawHub 生态</p>
+    <p><strong style="color:var(--orange)">W/T:</strong> 工具属性强，缺少工作台定位</p>
+  </div>
+</div>
+</div>
+
+<!-- ===== 4 战略建议 ===== -->
+<div class="sec" id="s4">
+<h2>战略建议</h2>
+
+<div class="sc">
+  <div class="tg">🎯 对阵飞书 Aily / 钉钉悟空</div>
+  <h4>打"新入口"</h4>
+  <p>承认其存量优势，但指出战略约束：飞书 Aily 受飞书旧入口绑定，钉钉悟空受钉钉自我革新约束。WorkBuddy 机会在于不绑定旧入口，直接成为企业 AI 工作台。</p>
+</div>
+
+<div class="sc">
+  <div class="tg">🎯 对阵 QoderWork / ArkClaw</div>
+  <h4>打"工作台高于工具"</h4>
+  <p>承认其工具能力，但避免被置于同一层级。它们解决"AI 如何执行任务"；WorkBuddy 解决"企业如何组织、治理和运营一批能执行任务的数字员工"。</p>
+</div>
+
+<h3>对外一页话术</h3>
+<div class="qb"><p>企业 AI 工作台并非更强的聊天框，也非更好用的龙虾。飞书 Aily 与钉钉悟空具备旧协同入口存量，但仍受旧入口绑定；QoderWork 与 ArkClaw 具备工具层执行能力，但缺乏组织级入口与企业资产沉淀。WorkBuddy 优势在于站位更高：真实执行 + Teams 协同 + Build 沉淀 + Connector 连接 + Admin 治理 + 腾讯文档/网盘/乐享，形成企业智能体完整方案。</p></div>
+
+<h3>最终结论</h3>
+<div class="qb"><p>QoderWork 与 ArkClaw 是工具型 Agent 而非企业工作台；飞书 Aily 与钉钉悟空更接近入口层但受旧入口绑定；WorkBuddy 直接占位独立企业 AI 工作台，整合真实执行、Teams 协同、Admin 治理与腾讯生态，形成完整方案。</p></div>
+</div>
+
+<div class="ft">基于「企业 AI 工作台赛道竞品分析：五方定位重构版」整理 &nbsp;·&nbsp; 报告日期：2026-05-22</div>
+
+</div>
+
+<script>
+function sw(i){
+  document.querySelectorAll('.sec').forEach((s,j)=>s.classList.toggle('active',j===i));
+  document.querySelectorAll('.nav button').forEach((b,j)=>b.classList.toggle('active',j===i));
+}
+</script>
+</body>
+</html>
